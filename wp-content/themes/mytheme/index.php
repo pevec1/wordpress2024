@@ -3,7 +3,7 @@
     the_custom_logo();
 } */ ?>
 
-<? echo do_shortcode('[my_shortcode]'); ?>
+<? //echo do_shortcode('[my_shortcode]'); ?>
 <? get_template_part('template-parts/home-page'); ?>
 <? get_sidebar(); ?>
 <? get_footer(); ?>

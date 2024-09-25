@@ -10,6 +10,7 @@
         </div>
     </footer>
     <script src="<?php echo bloginfo('template_url'); ?>/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- важно: включает контент подвала в WordPress -->
     <?php wp_footer(); ?>
 

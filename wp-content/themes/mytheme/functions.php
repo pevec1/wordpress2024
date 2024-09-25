@@ -77,14 +77,6 @@ function my_custom_shortcode()
 }
 add_shortcode('my_shortcode', 'my_custom_shortcode');
 
-// Добавляем хук для вывода формы
-add_shortcode('my_custom_registration2', 'my_custom_registration_form');
-
-add_shortcode('register_form', 'my_custom_registration_fields');
-
-add_shortcode('my_custom_login', 'my_custom_login');
-
-add_shortcode('my_custom_lost_password', 'my_custom_lost_password');
 
 
 // Функция для обработки формы
@@ -110,7 +102,7 @@ function my_contact_form()
         // Отправляем сообщение об успешной отправке
         echo '<p>Сообщение успешно отправлено!</p>';
         sleep(3); // Пауза в 3 секунды
-        $page_id = 19; // Замените на нужный ID страницы
+        $page_id = 6; // Замените на нужный ID страницы
         $page_link = get_permalink($page_id);
         wp_redirect($page_link);
         exit;
@@ -126,23 +118,29 @@ function my_custom_message_fields()
     ob_start();
 ?>
     <form method="post" action="">
-        <label for="name">Имя:</label>
-        <input type="text" name="name" id="name" required>
-        <br>
-        <label for="email">Email:</label>
-        <input type="email" name="email"
-            id="email" required>
-        <br>
-        <label for="phone">Телефон:</label>
-        <input type="tel" name="phone" id="phone">
+        <div class="mb-6">
+            <label for="name" class="form-label">Имя</label>
+            <input type="text" class="form-control" name="name" id="name" aria-describedby="nameHelp" required>
 
-        <br>
-        <label for="message">Сообщение:</label>
-        <textarea name="message" id="message" required></textarea>
-        <br>
-        <input type="submit" name="submit_message_nam" value="Отправить">
+        </div>
+        <div class="mb-6">
+            <label for="email" class="form-label">Email:</label>
+
+            <input type="text" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-6">
+            <label for="phone" class="form-label">Номер телефона:</label>
+            <input type="tel" class="form-control" id="phone" required>
+        </div>
+        <div class="mb-6">
+            <label for="message" class="form-label">Сообщение:</label>
+            <textarea class="form-control" id="message" rows="3"></textarea>
+        </div>
+
+        <input type="submit" class="btn btn-primary" name="submit_message_nam" value="Отправить">
     </form>
 <?php
     return ob_get_clean();
 }
+
 ?>

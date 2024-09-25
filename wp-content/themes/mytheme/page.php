@@ -23,18 +23,17 @@ get_header();
         while (have_posts()) :
             the_post();
             if (is_page(8)) :
-                echo 'Туры';
                 get_template_part('template-parts/tury', 'page');
             elseif (is_page(6)) : ?>
 <?php the_title(); ?>
     <?php the_content();
                 get_template_part('template-parts/nam', 'page');
             elseif (is_page(12)) :
-                echo 'Записаться';
                 get_template_part('template-parts/zapis', 'page');
             elseif (is_page(10)) :
-                echo 'Личный кабинет';
                 get_template_part('template-parts/kabinet', 'page');
+            elseif (is_page(20)) :
+                get_template_part('template-parts/vhod', 'page');
             endif;
 
 

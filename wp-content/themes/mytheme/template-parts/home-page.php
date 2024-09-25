@@ -1,8 +1,3 @@
-<article>
-    <?php ///the_content(); 
-    ?>
-</article>
-<main>
     <h1>Маршруты будущего</h1>
     <div class="content">
         <div>
@@ -31,4 +26,3 @@
         </div>
         <?php get_sidebar('sidebar-1'); ?>
     </div>
-</main>
