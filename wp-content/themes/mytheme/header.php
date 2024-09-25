@@ -3,14 +3,6 @@
 
 <head>
     <meta charset="utf-8">
-</head>
-
-
-<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?php wp_title('|', true, 'right'); ?></title>
     <meta name="theme-color" content="#c9e0e04d">
