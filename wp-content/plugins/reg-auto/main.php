@@ -12,4 +12,7 @@ Author: Андрей Харенков
 // main.php
 define('MY_PLUGIN_DIR', plugin_dir_path(__FILE__));
 require_once MY_PLUGIN_DIR . 'includes/functions.php';
+
+add_action('wp_ajax_my_file_upload_action', 'my_file_upload_action');
+
 ?>

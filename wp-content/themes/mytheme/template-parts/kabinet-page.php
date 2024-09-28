@@ -6,9 +6,11 @@
 			<div class="">
 				<?php ?>
 				<? if ($_SESSION['user_data']) {
+					echo do_shortcode('[my_file_upload]');
 					echo do_shortcode('[register_form]'); 
 					echo do_shortcode('[logged_form]');
 				} else {
+					echo do_shortcode('[my_file_upload]');
 					echo do_shortcode('[register_form]'); 
 					?>
 					<a href="<?php echo get_permalink(20); ?>" class="btn btn-secondary">Войти</a>

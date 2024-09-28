@@ -9,6 +9,11 @@
 					echo do_shortcode('[logged_form]');
 				} else {
 					echo do_shortcode('[login_form]');
+					$page_id = 23; // ID страницы, на которую нужно перейти
+					$page_link = get_permalink($page_id);
+					?>
+					<a href="<?php echo esc_url($page_link); ?>" class="btn btn-secondary">Забыли пароль?</a>
+					<?
 				}
 				?>
 			</div>

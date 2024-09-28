@@ -9,7 +9,7 @@
             <div class="footer__social"><?php echo do_shortcode('[DISPLAY_ULTIMATE_SOCIAL_ICONS]'); ?></div>
         </div>
     </footer>
-    <script src="<?php echo bloginfo('template_url'); ?>/js/main.js"></script>
+    <script src="<?php echo bloginfo('template_url'); ?>/js/main.js0"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- важно: включает контент подвала в WordPress -->
     <?php wp_footer(); ?>
