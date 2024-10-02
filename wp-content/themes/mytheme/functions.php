@@ -127,10 +127,47 @@ function my_contact_form()
     }
 }
 
-// Добавляем шорткод для вывода формы
-add_shortcode('message_form', 'my_custom_message_fields');
+function custom_content_on_second_page($content)
+{
+    if (is_page() && get_query_var('paged') == 6) {
+        // Ваш текст для второй страницы
+        $additional_content = 'message_form';
+        $content .= $additional_content;
+    }
+    return $content;
+}
+add_filter('the_content', 'custom_content_on_second_page');
+add_filter('the_content', 'add_text_to_page_2');
 
+function add_text_to_page_2($content)
+{
+    if (get_the_ID() == 6) {
+        $content .= 'message_form';
+    }
+    return $content;
+}
 add_action('message_form', 'my_custom_message_fields');
+// Добавляем шорткод для вывода формы
+
+add_filter('the_content', 'insert_text_into_page');
+
+function insert_text_into_page($content)
+{
+    if (get_the_ID() == 6) {
+        // Если это одиночная запись, модифицируем шаблон
+        //$content .= 'kkkkkkkkkkkkkkk';
+        // Определяем, где именно хотим вставить шорткод
+        $position = strpos($content, 'message_form');
+
+        // Если указанная метка найдена, вставляем шорткод
+        if ($position !== false) {
+            $shortcode = '[message_form]'; // Замените на ваш шорткод
+            $content = substr_replace($content, $shortcode, $position, 12); // 12 - длина метки
+        }
+    }
+    return $content;
+}
+
 function my_custom_message_fields()
 {
     ob_start();
@@ -160,5 +197,5 @@ function my_custom_message_fields()
 <?php
     return ob_get_clean();
 }
-
+add_shortcode('message_form', 'my_custom_message_fields');
 ?>

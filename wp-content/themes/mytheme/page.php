@@ -26,8 +26,7 @@ get_header();
                 get_template_part('template-parts/tury', 'page');
             elseif (is_page(6)) : ?>
 <?php the_title(); ?>
-    <?php the_content();
-                get_template_part('template-parts/nam', 'page');
+    <?php get_template_part('template-parts/nam', 'page');
             elseif (is_page(12)) :
                 get_template_part('template-parts/zapis', 'page');
             elseif (is_page(10)) :
