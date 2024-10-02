@@ -7,5 +7,10 @@
 				<?php echo do_shortcode('[message_form]'); ?>
 			</div>
 		</div>
+
 	</div>
+				<?php
+				echo do_shortcode('[censor_message]');
+				?>
+
 </main>

@@ -36,6 +36,8 @@ get_header();
                 get_template_part('template-parts/vhod', 'page');
             elseif (is_page(23)) :
                 get_template_part('template-parts/lost', 'page');
+            elseif (is_page('reset-password')) :
+                get_template_part('template-parts/reset', 'page');
             endif;
 
 

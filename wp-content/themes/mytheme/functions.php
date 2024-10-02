@@ -93,6 +93,24 @@ function my_contact_form()
             $_POST['message']
         );
 
+        $post_data = array(
+            'post_title'   => 'Напишите нам '. $name,
+            'post_content' => $message,
+            'post_status'  => 'publish',
+            'post_type'    => 'post',
+            'post_phone'   => $phone,
+            // Или другой тип записи
+        );
+
+        $post_id = wp_insert_post($post_data);
+
+        if (is_wp_error($post_id)) {
+            // Обработка ошибок
+        } else {
+            // Отправка уведомления
+        }
+
+
         $to = 'pevec1@yandex.ru'; // Замените на ваш email
         $subject = 'Новое сообщение с сайта';
         $body = "Имя: $name\nEmail: $email\nТелефон: $phone\nСообщение:\n$message";
@@ -130,11 +148,11 @@ function my_custom_message_fields()
         </div>
         <div class="mb-6">
             <label for="phone" class="form-label">Номер телефона:</label>
-            <input type="tel" class="form-control" id="phone" required>
+            <input type="tel" name="phone" class="form-control" id="phone" required>
         </div>
         <div class="mb-6">
             <label for="message" class="form-label">Сообщение:</label>
-            <textarea class="form-control" id="message" rows="3"></textarea>
+            <textarea class="form-control" name="message" id="message" rows="3"></textarea>
         </div>
 
         <input type="submit" class="btn btn-primary" name="submit_message_nam" value="Отправить">

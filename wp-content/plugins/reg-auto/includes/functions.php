@@ -128,7 +128,7 @@ function custom_password_reset()
         // Запрос к базе данных для поиска пользователя по email
         global $wpdb;
         $table_name = $wpdb->prefix . 'reg_auto_data';
-        $user = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . $table_name . " WHERE email = %s", $email));
+        $user = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . $table_name . " WHERE user_email = %s", $email));
         if ($user) {
             // Генерация токена
             $reset_token = wp_generate_password(20, false);
@@ -142,7 +142,11 @@ function custom_password_reset()
             $to = $email;
             $subject = 'Сброс пароля';
             $message = "Ссылка для сброса пароля: " . site_url() . "/reset-password?token=" . $reset_token;
-            wp_mail($to, $subject, $message);
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+            //mail($to, $subject, $message);
+            mail($to, $subject, $message);
             // Сообщение об успешной отправке письма
             echo "Проверьте свою почту для сброса пароля.";
         } else {
@@ -161,18 +165,78 @@ function custom_user_password_reset_form()
         <input type="email" name="email" placeholder="Введите ваш email">
         <button type="submit" name="submit_email">Отправить</button>
     </form>
-<?php
+    <?php
     return ob_get_clean();
 }
 add_shortcode('custom_password_reset', 'custom_user_password_reset_form');
+
+function custom_reset_password($token)
+{
+    global $wpdb;
+
+    // 1. Проверка валидности токена
+    $token_data = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}reg_auto_data WHERE token = %s", $token));
+
+    if (!$token_data || time() > $token_data->expires) {
+        return new WP_Error('invalid_token', __('Токен недействителен или истек', 'your-textdomain'));
+    }
+
+    // 2. Получение ID пользователя
+    $user_id = $token_data->user_id;
+
+    // 3. Проверка существования пользователя в кастомной таблице
+    $user = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}reg_auto_data WHERE id = %d", $user_id));
+
+    if (!$user) {
+        return new WP_Error('user_not_found', __('Пользователь не найден', 'your-textdomain'));
+    }
+
+    // 4. Форма для ввода нового пароля
+    if (is_wp_error($user)) {
+        // Вывод сообщения об ошибке
+    } else {
+    ?>
+        <form method="post" action="">
+            <input type="hidden" name="token" value="<?php echo esc_attr($token); ?>">
+            <label for="password">Новый пароль:</label>
+            <input type="password" name="password" id="password" required>
+            <input type="submit" name="user_password" value="Сменить пароль">
+        </form>
+    <?php
+    }
+
+    // 5. Обработка отправки формы
+    if (isset($_POST['password'])&&isset($_POST['user_password'])) {
+        $new_password = sanitize_text_field($_POST['password']);
+
+        // Хэширование нового пароля
+        $hashed_password = wp_hash_password($new_password);
+
+        // Обновление пароля в кастомной таблице
+        $wpdb->update(
+            $wpdb->prefix . 'reg_auto_data',
+            array('user_pass' => $hashed_password),
+            array('id' => $user_id)
+        );
+
+        // Удаление токена
+        $wpdb->delete($wpdb->prefix . 'reg_auto_data', array('token' => $token));
+
+        // Перенаправление на страницу успешной смены пароля
+        wp_redirect(home_url('/'));
+        exit;
+    }
+}
+
+add_shortcode('custom_reset_password', 'custom_reset_password');
 // Функция для создания формы
 function my_upload_form()
 {
-?>
+    ?>
     <form action="" method="post" enctype="multipart/form-data">
         Выберите изображение для загрузки:
         <input type="file" name="fileToUpload" id="fileToUpload">
-        <input type="submit" value="Загрузить изображение" name="submit">
+        <input type="submit" value="Загрузить изображение" name="submit_image">
     </form>
 
     <script>
@@ -195,7 +259,7 @@ add_shortcode('my_upload_form', 'my_upload_form');
 // Функция для обработки загрузки
 function my_upload_action()
 {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['register'])) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_image'])) {
         // Получаем информацию о загруженном файле
         $target_dir = MY_PLUGIN_DIR . "uploads/"; // Директория для сохранения файлов
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
