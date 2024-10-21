@@ -18,15 +18,16 @@
 
 <body>
 
-    <?php wp_body_open(); global $wpdb; ?>
+    <?php wp_body_open();
+    global $wpdb; ?>
     <main class="wrap">
         <header>
-            <img src="<?php echo bloginfo('template_url'); ?>/img/hero.png" alt="Маршруты будущего">
+            <img src="http://wordi2/wp-content/uploads/2024/10/око.png" alt="Маршруты будущего" width="150">
             <img src="<?php echo bloginfo('template_url'); ?>/img/chevron-left-s.svg" width="40" alt="">
             <nav>
                 <ul>
-                    <li><a href="<?php echo esc_url(home_url('/')); ?>">Главная</a></li>
-                    <li><a href="<?php echo get_permalink(8); ?>">Туры</a></li>
+                    <li><a href="<?php echo get_permalink(2); ?>"><span id="demotip" title="Главная">Главная</span></a></li>
+                    <li><a href="<?php echo get_permalink(8); ?>"><span id="demotip" title="Туры">Туры</span></a></li>
                     <li><a href="<?php echo get_permalink(6); ?>">Напишите нам</a></li>
                     <li><a href="<?php echo get_permalink(12); ?>">Записаться</a></li>
                 </ul>
@@ -34,7 +35,9 @@
             <img src="<?php echo bloginfo('template_url'); ?>/img/chevron-right-s.svg" width="40" alt="">
             <div>
                 <a href="<?php echo get_permalink(10); ?>">Личный кабинет<br>
-                <? if ($_SESSION['user_data']) { echo $_SESSION['user_data']->user_login; } ?></a>
+                    <? if ($_SESSION['user_data']) {
+                        echo $_SESSION['user_data']->user_login;
+                    } ?></a>
             </div>
             <!-- <?php //wp_nav_menu(array('theme_location' => 'header-menu'));
                     ?> -->

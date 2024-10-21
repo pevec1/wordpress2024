@@ -1,3 +1,6 @@
+<?php
+get_header();
+?>
 <main>
     <?php wp_body_open(); ?>
     <h1>Маршруты будущего</h1>
@@ -9,3 +12,5 @@
         </div>
     </div>
 </main>
+<?php
+get_footer();

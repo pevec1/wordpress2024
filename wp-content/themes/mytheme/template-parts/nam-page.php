@@ -1,3 +1,6 @@
+<?php
+get_header();
+?>
 <main>
 	<h1>Маршруты будущего</h1>
 	<div class="content_nam">
@@ -15,3 +18,5 @@
 	?>
 
 </main>
+<?php
+get_footer();
