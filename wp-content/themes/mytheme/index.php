@@ -2,6 +2,7 @@
 <? /* if (function_exists('the_custom_logo')) {
     the_custom_logo();
 } */ ?>
+   <main class="wrap">
 <h1>Маршруты будущего</h1>
 <div class="slider">
     <div class="slider__items">
@@ -145,4 +146,5 @@
             </div>
         </div>
         </div>
+</main>
 <? get_footer(); ?>

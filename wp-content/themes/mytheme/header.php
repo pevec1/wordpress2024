@@ -20,7 +20,6 @@
 
     <?php wp_body_open();
     global $wpdb; ?>
-    <main class="wrap">
         <header>
             <img src="http://wordi2/wp-content/uploads/2024/10/око.png" alt="Маршруты будущего" width="150">
             <img src="<?php echo bloginfo('template_url'); ?>/img/chevron-left-s.svg" width="40" alt="">
@@ -42,5 +41,5 @@
             <!-- <?php //wp_nav_menu(array('theme_location' => 'header-menu'));
                     ?> -->
         </header>
-
-        <body>
+ 
+ 

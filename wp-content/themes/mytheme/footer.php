@@ -1,4 +1,3 @@
-</main> 
    <footer>
         <div class="footer__content">
             <div class="footer__item">Маршруты будущего</div>
