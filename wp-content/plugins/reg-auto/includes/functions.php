@@ -79,11 +79,15 @@ function my_custom_login_form_function()
     global $wpdb;
 ?>
     <form method="post" action="">
+        <p>
         <label for="username">Имя пользователя:</label>
         <input type="text" name="username" id="username" required>
+        </p>
+        <p>
         <label for="password">Пароль:</label>
 
         <input type="password" name="password" id="password" required>
+        </p>
         <button type="submit">Войти</button>
     </form>
 <?php

@@ -21,8 +21,10 @@
     <?php wp_body_open();
     global $wpdb; ?>
         <header>
-            <img src="http://wordi2/wp-content/uploads/2024/10/око.png" alt="Маршруты будущего" width="150">
-            <img src="<?php echo bloginfo('template_url'); ?>/img/chevron-left-s.svg" width="40" alt="">
+            <div class="header__logo">
+            <img class="logo" src="http://wordi2/wp-content/uploads/2024/10/око.png" alt="Маршруты будущего" width="150">
+            </div>
+            <img class="arrow" src="<?php echo bloginfo('template_url'); ?>/img/chevron-left-s.svg" width="40" alt="">
             <nav>
                 <ul>
                     <li><a href="<?php echo get_permalink(2); ?>"><span id="demotip" title="Главная">Главная</span></a></li>
@@ -31,7 +33,7 @@
                     <li><a href="<?php echo get_permalink(12); ?>">Записаться</a></li>
                 </ul>
             </nav>
-            <img src="<?php echo bloginfo('template_url'); ?>/img/chevron-right-s.svg" width="40" alt="">
+            <img class="arrow" src="<?php echo bloginfo('template_url'); ?>/img/chevron-right-s.svg" width="40" alt="">
             <div>
                 <a href="<?php echo get_permalink(10); ?>">Личный кабинет<br>
                     <? if ($_SESSION['user_data']) {
