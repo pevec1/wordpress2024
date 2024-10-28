@@ -10,7 +10,7 @@ header{
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-   background: #d4edff;
+   background: linear-gradient(to right,#6954b3,#548bb3);
    color: #000;
 }
 nav ul li{
@@ -256,7 +256,7 @@ footer{
   align-items: center;
   padding: 20px;
 
-   background: #d4e9ff;
+  background: linear-gradient(to left,#6954b3,#548bb3);;
    color: #000;
 
 }
@@ -265,7 +265,7 @@ footer{
   flex-direction: row;
   align-items: center;
   color: #000;
- background: #d4e9ff;
+ /* background: #d4e9ff; */
   /* justify-content: center; */
   padding: 0px;
 }

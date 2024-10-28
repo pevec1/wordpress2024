@@ -3,17 +3,16 @@ add_theme_support('custom-logo');
 
 function themename_custom_logo_setup()
 {
-    $defaults = array(
-        'height'               => 100,
-        'width'                => 400,
-        'flex-height'          => true,
-        'flex-width'           => true,
-        'header-text'          => array('site-title', 'site-description'),
-        'unlink-homepage-logo' => true,
-    );
-    add_theme_support('custom-logo', $defaults);
+?>
+    <style type="text/css">
+        body.login div#login h1 a {
+            background-image: url("<?php echo get_template_directory_uri(); ?>/logo.png");
+            background-size: 100%;
+        }
+    </style>
+<?
 }
-add_action('after_setup_theme', 'themename_custom_logo_setup');
+add_action('login_enqueue_scripts', 'themename_custom_logo_setup');
 
 function it_blog_style_frontend()
 {
